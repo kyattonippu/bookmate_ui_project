@@ -27,7 +27,6 @@ public class FooterTests extends TestBase {
     @BeforeEach
     public void beforeEach() {
         open(baseUrl());
-
     }
 
     @Test

@@ -23,11 +23,11 @@ public class MainPage {
     private final SelenideElement headerTabsSection = $(".Header_header__9Wxwt");
     private final SelenideElement footerTabsSection = $(".footer-contacts_links__f_QVR");
 
-    public SelenideElement allBooksLink = $("[href='/books']"),
-    audioBooksLink = $("[href='/audiobooks']"),
-    comicBooksLink = $("[href='/comicbooks']"),
-    childrensLink = $("[href='/library/t-detyam-ru']"),
-    searchLink = $("[href='/search']"),
+    public SelenideElement allBooksLink = $("[href='https://bookmate.ru/books']"),
+    audioBooksLink = $("[href='https://bookmate.ru/audiobooks']"),
+    comicBooksLink = $("[href='https://bookmate.ru/comicbooks']"),
+    childrensLink = $("[href='https://bookmate.ru/library/t-detyam-ru']"),
+    searchLink = $("[href='https://bookmate.ru/search']"),
     plusLink = $(byText("Оформить подписку")),
     loginLink = $(byText("Войти")),
     vkLink = $("[href='https://vk.com/bookmate_ru']"),
