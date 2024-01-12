@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.kyattonippu.pages.MainPage.baseUrl;
 
 @Tag("UI")
+@Tag("remote")
 @Feature("Search")
 @Owner("kyattonippu")
 public class SearchTests {
