@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.kyattonippu.pages.MainPage.baseUrl;
 
 @Tag("UI")
-@Tag("remote")
 @Feature("Search")
 @Owner("kyattonippu")
 public class SearchTests {
@@ -38,6 +37,7 @@ public class SearchTests {
     }, delimiter = '|')
 
     @ParameterizedTest(name = "{arguments}")
+    @Tag("remote")
     @DisplayName("Поиск элемента по фильтру:")
     void checkSearchWithFilter(String itemType, String itemName) {
         Allure.getLifecycle().updateTestCase(test ->

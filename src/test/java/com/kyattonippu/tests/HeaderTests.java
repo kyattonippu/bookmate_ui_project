@@ -17,7 +17,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.kyattonippu.pages.MainPage.baseUrl;
 
 @Tag("UI")
-@Tag("remote")
 @Feature("Header")
 @Owner("kyattonippu")
 public class HeaderTests extends TestBase {
@@ -31,6 +30,7 @@ public class HeaderTests extends TestBase {
     }
 
     @Test
+    @Tag("remote")
     @DisplayName("Проверка видимости ссылок в Header")
     void checkHeaderLinksVisibility() {
 

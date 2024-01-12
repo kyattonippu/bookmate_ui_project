@@ -17,7 +17,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.kyattonippu.pages.MainPage.baseUrl;
 
 @Tag("UI")
-@Tag("remote")
 @Feature("Footer")
 @Owner("kyattonippu")
 public class FooterTests extends TestBase {
@@ -31,6 +30,7 @@ public class FooterTests extends TestBase {
     }
 
     @Test
+    @Tag("remote")
     @DisplayName("Проверка видимости контактов в Footer")
     void checkHeaderLinksVisibility() {
         mainPage.checkVkLinkVisibility();
