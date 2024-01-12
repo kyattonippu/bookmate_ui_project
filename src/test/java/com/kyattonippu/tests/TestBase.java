@@ -28,6 +28,7 @@ public class TestBase {
         Configuration.browserVersion = webDriverConfig.browserVersion();
         Configuration.browserSize = webDriverConfig.browserSize();
         Configuration.baseUrl = webDriverConfig.baseUrl();
+        Configuration.remote = System.getProperty("selenoid", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         String remoteUrl = "https://" + authConfig.remote_username() + ":" + authConfig.remote_password()
                 + "@" + webDriverConfig.remoteUrl() + "/wd/hub";
         System.out.println(remoteUrl);
@@ -55,13 +56,15 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        closeWebDriver();
     }
-
+/*
     @AfterAll
     static void afterAll() {
         clearBrowserCookies();
         clearBrowserLocalStorage();
         closeWebDriver();
     }
+ */
 }
 
