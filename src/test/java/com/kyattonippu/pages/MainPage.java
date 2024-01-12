@@ -56,7 +56,7 @@ public class MainPage {
 
     @Step("Проверить, что страница {url} открыта")
     public MainPage checkFooterPageIsOpen(String url) {
-        assertThat(driver().getCurrentFrameUrl()).isEqualTo(url);
+        webdriver().shouldHave(url(url));
 
         return this;
     }
