@@ -7,7 +7,6 @@ import com.kyattonippu.config.WebDriverConfig;
 import com.kyattonippu.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,13 +57,5 @@ public class TestBase {
         Attach.addVideo();
         closeWebDriver();
     }
-/*
-    @AfterAll
-    static void afterAll() {
-        clearBrowserCookies();
-        clearBrowserLocalStorage();
-        closeWebDriver();
-    }
- */
 }
 

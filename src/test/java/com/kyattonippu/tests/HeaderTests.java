@@ -45,6 +45,7 @@ public class HeaderTests extends TestBase {
     }
 
     @ParameterizedTest(name = "{arguments}")
+    @Tag("remote")
     @EnumSource(Header.class)
     @DisplayName("Проверка открытия вкладок в Header")
     void checkHeaderLinksOpening(Header header) {

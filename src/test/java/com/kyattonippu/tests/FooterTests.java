@@ -38,6 +38,7 @@ public class FooterTests extends TestBase {
     }
 
     @ParameterizedTest(name = "{arguments}")
+    @Tag("remote")
     @EnumSource(Footer.class)
     @DisplayName("Проверка открытия ссылок в Footer")
     void checkFooterLinksOpening(Footer footer) {
