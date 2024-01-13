@@ -13,18 +13,21 @@ import org.junit.jupiter.api.BeforeAll;
 public class TestBase {
 
     private static final WebConfig webConfig = ConfigReader.Instance.read();
+
     @BeforeAll
     static void beforeAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         ProjectConfiguration projectConfiguration = new ProjectConfiguration(webConfig);
         projectConfiguration.webConfig();
     }
+
     @AfterEach
-    void afterTests() {
+    public void afterTests() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+
         Selenide.clearBrowserCookies();
         Selenide.clearBrowserLocalStorage();
         Selenide.closeWebDriver();

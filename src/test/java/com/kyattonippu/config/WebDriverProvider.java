@@ -20,24 +20,24 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     @Override
     public WebDriver get() {
         WebDriver driver = createWebDriver();
-        driver.get(webConfig.baseUrl());
+        driver.get(webConfig.getBaseUrl());
         return driver;
     }
 
     private WebDriver createWebDriver() {
-        if (Objects.isNull(webConfig.remoteUrl())) {
-            if (webConfig.browser().equals(Browser.CHROME.toString())) {
+        if (Objects.isNull(webConfig.getRemoteUrl())) {
+            if (webConfig.getBrowser().equals(Browser.CHROME.toString())) {
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
-            } else if (webConfig.browser().equals(Browser.FIREFOX.toString())) {
+            } else if (webConfig.getBrowser().equals(Browser.FIREFOX.toString())) {
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
             }
         } else {
-            if (webConfig.browser().equals(Browser.CHROME.toString())) {
-                return new RemoteWebDriver(webConfig.remoteUrl(), new ChromeOptions());
-            } else if (webConfig.browser().equals(Browser.FIREFOX.toString())) {
-                return new RemoteWebDriver(webConfig.remoteUrl(), new FirefoxOptions());
+            if (webConfig.getBrowser().equals(Browser.CHROME.toString())) {
+                return new RemoteWebDriver(webConfig.getRemoteUrl(), new ChromeOptions());
+            } else if (webConfig.getBrowser().equals(Browser.FIREFOX.toString())) {
+                return new RemoteWebDriver(webConfig.getRemoteUrl(), new FirefoxOptions());
             }
         }
         throw new RuntimeException("No such browser");
