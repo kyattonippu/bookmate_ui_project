@@ -17,7 +17,7 @@ import static com.kyattonippu.pages.MainPage.baseUrl;
 @Tag("UI")
 @Feature("Search")
 @Owner("kyattonippu")
-public class SearchTests {
+public class SearchTests extends TestBase {
 
     SearchPage searchPage = new SearchPage();
 
