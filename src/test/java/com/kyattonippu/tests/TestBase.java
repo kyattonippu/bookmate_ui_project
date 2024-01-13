@@ -7,6 +7,7 @@ import com.kyattonippu.config.ProjectConfiguration;
 import com.kyattonippu.config.web.WebConfig;
 import com.kyattonippu.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -27,9 +28,12 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
-
         Selenide.clearBrowserCookies();
         Selenide.clearBrowserLocalStorage();
+    }
+
+    @AfterAll
+    public void afterAllTests() {
         Selenide.closeWebDriver();
     }
 }
