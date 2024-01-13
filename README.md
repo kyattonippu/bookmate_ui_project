@@ -91,8 +91,7 @@ gradle clean test
 - <code>TASK</code> - набор тестов для запуска
 
 >  После выполнения сборки, в блоке <code><strong>*История сборок*</strong></code> напротив номера сборки появится
-значки <img width="2%" title="Allure Report" src="media/icons/AllureReport.svg"><code><strong>*Allure
-Report*</strong></code> и <img width="2%" title="AllureTestOps" src="media/icons/AllureTestOps.svg"><code><strong>*AllureTestOps*</strong></code>, при клике на которые откроется страница со сформированным html-отчетом и тестовой документацией соответственно.
+значки <img width="2%" title="Allure Report" src="media/icons/AllureReport.svg"><code><strong>*Allure Report*</strong></code> и <img width="2%" title="AllureTestOps" src="media/icons/AllureTestOps.svg"><code><strong>*AllureTestOps*</strong></code>, при клике на которые откроется страница со сформированным html-отчетом и тестовой документацией соответственно.
 
 
 <a id="allure"></a>
