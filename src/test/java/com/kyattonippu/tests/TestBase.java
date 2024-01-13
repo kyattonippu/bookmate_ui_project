@@ -33,7 +33,7 @@ public class TestBase {
     }
 
     @AfterAll
-    public void afterAllTests() {
+    static void afterAllTests() {
         Selenide.closeWebDriver();
     }
 }
