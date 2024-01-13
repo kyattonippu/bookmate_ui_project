@@ -1,61 +1,33 @@
 package com.kyattonippu.tests;
 
-import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.kyattonippu.config.AuthConfig;
-import com.kyattonippu.config.WebDriverConfig;
+import com.kyattonippu.config.ConfigReader;
+import com.kyattonippu.config.ProjectConfiguration;
+import com.kyattonippu.config.web.WebConfig;
 import com.kyattonippu.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.util.Map;
-
-import static com.codeborne.selenide.Selenide.*;
 
 public class TestBase {
 
-    static WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-    static AuthConfig authConfig = ConfigFactory.create(AuthConfig.class, System.getProperties());
-
+    private static final WebConfig webConfig = ConfigReader.Instance.read();
     @BeforeAll
-    static void configuration() {
-        Configuration.browser = webDriverConfig.browser();
-        Configuration.browserVersion = webDriverConfig.browserVersion();
-        Configuration.browserSize = webDriverConfig.browserSize();
-        Configuration.baseUrl = webDriverConfig.baseUrl();
-        Configuration.remote = System.getProperty("selenoid", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-        String remoteUrl = "https://" + authConfig.remote_username() + ":" + authConfig.remote_password()
-                + "@" + webDriverConfig.remoteUrl() + "/wd/hub";
-        System.out.println(remoteUrl);
-        if (webDriverConfig.isRemote()) {
-            Configuration.remote = remoteUrl;
-
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                    "enableVNC", true,
-                    "enableVideo", true
-            ));
-
-            Configuration.browserCapabilities = capabilities;
-        }
+    static void beforeAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+        ProjectConfiguration projectConfiguration = new ProjectConfiguration(webConfig);
+        projectConfiguration.webConfig();
     }
-
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
     @AfterEach
-    void addAttachments() {
+    void afterTests() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
-        closeWebDriver();
+        Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
+        Selenide.closeWebDriver();
     }
 }
 

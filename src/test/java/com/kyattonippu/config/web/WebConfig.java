@@ -1,19 +1,21 @@
-package com.kyattonippu.config;
+package com.kyattonippu.config.web;
 
 import org.aeonbits.owner.Config;
+
+import java.net.URL;
 
 @Config.Sources({
         "classpath:${env}.properties"
 })
 
-public interface WebDriverConfig extends Config {
+public interface WebConfig extends Config {
 
     @Key("browser")
     @DefaultValue("CHROME")
     String browser();
 
     @Key("browser_size")
-    @DefaultValue("1440x900")
+    @DefaultValue("1920x1080")
     String browserSize();
 
     @Key("browser_version")
@@ -21,7 +23,7 @@ public interface WebDriverConfig extends Config {
     String browserVersion();
 
     @Key("baseUrl")
-    @DefaultValue("https://bookmate.ru")
+    @DefaultValue("https://bookmate.ru/")
     String baseUrl();
 
     @Key("isRemote")
@@ -29,6 +31,6 @@ public interface WebDriverConfig extends Config {
     Boolean isRemote();
 
     @Key("remoteUrl")
-    @DefaultValue("http://localhost:4444")
-    String remoteUrl();
+    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
+    URL remoteUrl();
 }
