@@ -39,7 +39,7 @@ public class SearchTests extends TestBase {
     @ParameterizedTest(name = "{arguments}")
     @Tag("remote")
     @DisplayName("Поиск элемента по фильтру:")
-    void checkSearchWithFilter(String itemType, String itemName) {
+    void checkSearchWithFilterTest(String itemType, String itemName) {
         Allure.getLifecycle().updateTestCase(test ->
                 test.setName("Поиск элемента по фильтру: [Filter, Search text]"));
 

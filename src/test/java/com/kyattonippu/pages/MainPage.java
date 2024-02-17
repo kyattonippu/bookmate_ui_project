@@ -1,5 +1,6 @@
 package com.kyattonippu.pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.kyattonippu.utils.Footer;
 import com.kyattonippu.utils.Header;
@@ -8,11 +9,10 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
-import static com.codeborne.selenide.WebDriverRunner.driver;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.codeborne.selenide.WebDriverRunner.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class MainPage {
@@ -39,13 +39,6 @@ public class MainPage {
         return this;
     }
 
-    @Step("Открыть {footer}")
-    public MainPage openFooter(Footer footer) {
-        footerTabsSection.scrollTo();
-        footerTabsSection.$(withText(footer.name)).click();
-
-        return this;
-    }
 
     @Step("Проверить, что страница {url} открыта")
     public MainPage checkPageIsOpen(String url) {
@@ -55,9 +48,25 @@ public class MainPage {
     }
 
     @Step("Проверить, что страница {url} открыта")
-    public MainPage checkFooterPageIsOpen(String url) {
-        webdriver().shouldHave(url(url));
+    public MainPage checkFooterPageIsOpen(Footer footer) {
+        String originalWindowHandle = getWebDriver().getWindowHandle();
 
+
+        for (int i = 1; i <= 5; i++) {
+            footerTabsSection.scrollTo();
+            footerTabsSection.$(withText(footer.name)).click();
+
+            switchTo().window(getWebDriver().getWindowHandles().stream()
+                    .filter(handle -> !handle.equals(originalWindowHandle))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalStateException("New tab not found")));
+
+            assertEquals(footer.url, getWebDriver().getCurrentUrl(), "URLs do not match");
+            Selenide.closeWindow();
+            switchTo().window(originalWindowHandle);
+
+            return this;
+        }
         return this;
     }
 

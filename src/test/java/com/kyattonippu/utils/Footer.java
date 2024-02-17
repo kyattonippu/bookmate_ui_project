@@ -4,7 +4,7 @@ public enum Footer {
 
     AGREEMENT("Пользовательское соглашение", "https://yandex.ru/legal/bookmate_termsofuse/?campaign_name=footer"),
     CONDITIONS("Условия подписки", "https://yandex.ru/legal/yandex_plus_conditions/?campaign_name=footer"),
-    RULES("Правила рекомендаций",  "https://bookmate.ru/legal/recommendations/ru/?campaign_name=footer"),
+    RULES("Правила рекомендаций",  "https://bookmate.ru/legal/recommendations/ru/?force-web=true&campaign_name=footer"),
     HELP("Справка", "https://yandex.ru/support/bookmate/?campaign_name=footer" ),
     FORUM("Форум пожеланий", "https://yandexbookmate.userecho.com/?campaign_name=footer");
 

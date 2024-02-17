@@ -6,10 +6,7 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
@@ -32,7 +29,7 @@ public class FooterTests extends TestBase {
     @Test
     @Tag("remote")
     @DisplayName("Проверка видимости контактов в Footer")
-    void checkHeaderLinksVisibility() {
+    void checkHeaderLinksVisibilityTest() {
         mainPage.checkVkLinkVisibility();
         mainPage.checkTgLinkVisibility();
     }
@@ -41,12 +38,11 @@ public class FooterTests extends TestBase {
     @Tag("remote")
     @EnumSource(Footer.class)
     @DisplayName("Проверка открытия ссылок в Footer")
-    void checkFooterLinksOpening(Footer footer) {
+    void checkFooterLinksOpeningTest(Footer footer) {
         Allure.getLifecycle().updateTestCase(test ->
                 test.setName("Возможность открытия ссылок: [Footer]"));
 
-        mainPage.openFooter(footer)
-                .checkFooterPageIsOpen(baseUrl());
+        mainPage.checkFooterPageIsOpen(footer);
 
     }
 }

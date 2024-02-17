@@ -48,7 +48,7 @@ public class HeaderTests extends TestBase {
     @Tag("remote")
     @EnumSource(Header.class)
     @DisplayName("Проверка открытия вкладок в Header")
-    void checkHeaderLinksOpening(Header header) {
+    void checkHeaderLinksOpeningTest(Header header) {
         Allure.getLifecycle().updateTestCase(test ->
                 test.setName("Возможность открытия вкладок: [Header]"));
 
